@@ -23,7 +23,7 @@ func main() {
 		micro.Name("go.micro.srv.greeter"),
 		micro.RegisterTTL(time.Second*30),
 		micro.RegisterInterval(time.Second*10),
-		//micro.Version("latest"),
+		micro.Version("latest"),
 	)
 
 	// optionally setup command line usage
