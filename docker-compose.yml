@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+
+  cli:
+    build: ./cli
+    environment:
+      MICRO_REGISTRY: "mdns"
+
+  consignment-service:
+    build: ./srv
+    environment:
+#      MICRO_ADDRESS: ":50051"
+      MICRO_REGISTRY: "mdns"
