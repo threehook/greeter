@@ -1,42 +1,26 @@
 package main
 
 import (
-	"fmt"
+	"context"
 	microclient "github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/cmd"
-	"github.com/micro/go-micro/metadata"
 	pb "github.com/threehook/greeter/srv/proto/hello"
-	"context"
+	"log"
 )
 
 func main() {
 
 	cmd.Init()
 
-
-
-	//service := grpc.NewService()
-	//service.Init()
-
-	// use the generated client stub
-	//cl := hello.NewSayService("go.micro.srv.greeter", service.Client())
-
 	// Create new greeter client
-	client := pb.NewSayService("go.micro.srv.greeter", microclient.DefaultClient)
+	client := pb.NewSayService(
+		"go.micro.srv.greeter",
+		microclient.DefaultClient,
+	)
 
-	// Set arbitrary headers in context
-	ctx := metadata.NewContext(context.Background(), map[string]string{
-		"X-User-Id": "john",
-		"X-From-Id": "script",
-	})
-
-	rsp, err := cl.Hello(ctx, &hello.Request{
-		Name: "John",
-	})
+	r, err := client.Hello(context.TODO(), &pb.Request{Name: "Tonny"})
 	if err != nil {
-		fmt.Println(err)
-		return
+		log.Fatalf("Could not create: %v", err)
 	}
-
-	fmt.Println(rsp.Msg)
+	log.Printf("Created: %s", r.Msg)
 }

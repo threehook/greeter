@@ -7,7 +7,7 @@ services:
     environment:
       MICRO_REGISTRY: "mdns"
 
-  consignment-service:
+  srv:
     build: ./srv
     environment:
 #      MICRO_ADDRESS: ":50051"

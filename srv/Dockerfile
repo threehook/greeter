@@ -1,6 +1,6 @@
 FROM golang:1.12.2 as builder
 
-WORKDIR /go/src/github.com/micro/examples/grpc/greeter/srv
+WORKDIR /go/src/github.com/threehook/greeter/srv
 
 # Force the go compiler to use modules
 ENV GO111MODULE=on
@@ -26,7 +26,7 @@ FROM alpine:latest
 RUN apk --no-cache add ca-certificates
 
 WORKDIR /app
-COPY --from=builder /go/src/github.com/micro/examples/grpc/greeter/srv .
+COPY --from=builder /go/src/github.com/threehook/greeter/srv .
 
 ENTRYPOINT ["./srv"]
 

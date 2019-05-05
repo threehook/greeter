@@ -4,8 +4,8 @@ import (
 	"log"
 	"time"
 
-	hello "github.com/threehook/greeter/srv/proto/hello"
 	"github.com/micro/go-micro"
+	hello "github.com/threehook/greeter/srv/proto/hello"
 
 	"context"
 )
@@ -23,6 +23,7 @@ func main() {
 		micro.Name("go.micro.srv.greeter"),
 		micro.RegisterTTL(time.Second*30),
 		micro.RegisterInterval(time.Second*10),
+		micro.Version("latest"),
 	)
 
 	// optionally setup command line usage
